@@ -8,12 +8,14 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import Link from "next/link";
 import type { Metadata } from "next";
 
+// ✅ Corrigé pour Next.js 15.3.1 : params est une promesse
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const project = featuredProjects.find((p) => p.id === params.id);
+  const { id } = await params;
+  const project = featuredProjects.find((p) => p.id === id);
 
   if (!project) {
     return {
@@ -46,21 +48,21 @@ export async function generateMetadata({
   };
 }
 
-
-// ✅ Compatible App Router
+// Pas besoin de modifier cette fonction
 export async function generateStaticParams() {
   return featuredProjects.map((project) => ({
     id: project.id,
   }));
 }
 
-// ✅ Ne pas exporter un type Props custom : destructure directement dans la signature
+// ✅ Correction ici aussi : destructuration asynchrone de params
 export default async function ProjectDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const project = featuredProjects.find((p) => p.id === params.id);
+  const { id } = await params;
+  const project = featuredProjects.find((p) => p.id === id);
 
   if (!project) {
     notFound();
