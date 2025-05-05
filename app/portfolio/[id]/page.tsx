@@ -1,37 +1,75 @@
-// app/portfolio/[id]/page.tsx
-
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { ArrowLeft, Github, ExternalLink, Play } from "lucide-react";
+import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 import { featuredProjects } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import Link from "next/link";
+import type { Metadata } from "next";
 
-// ✅ Nécessaire pour next export
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const project = featuredProjects.find((p) => p.id === params.id);
+
+  if (!project) {
+    return {
+      title: "Projet introuvable",
+      description: "Le projet demandé n'existe pas ou a été supprimé.",
+    };
+  }
+
+  return {
+    title: project.title,
+    description: project.fullDescription,
+    openGraph: {
+      title: project.title,
+      description: project.fullDescription,
+      images: [
+        {
+          url: project.imageUrl,
+          width: 1200,
+          height: 630,
+          alt: `Aperçu du projet ${project.title}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description: project.fullDescription,
+      images: [project.imageUrl],
+    },
+  };
+}
+
+
+// ✅ Compatible App Router
 export async function generateStaticParams() {
   return featuredProjects.map((project) => ({
     id: project.id,
   }));
 }
 
-export default function ProjectDetailPage({ params }: { params: { id: string } }) {
+// ✅ Ne pas exporter un type Props custom : destructure directement dans la signature
+export default async function ProjectDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const project = featuredProjects.find((p) => p.id === params.id);
 
   if (!project) {
-    notFound(); // meilleure pratique que de renvoyer un composant custom
+    notFound();
   }
 
   return (
     <div className="pt-24 pb-16">
       <div className="container mx-auto px-4">
-        <Button
-          variant="outline"
-          size="sm"
-          className="mb-8"
-          asChild
-        >
+        <Button variant="outline" size="sm" className="mb-8" asChild>
           <Link href="/portfolio">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Retour aux projets
@@ -78,7 +116,11 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             <div className="mt-8 flex flex-wrap gap-4">
               {project.githubUrl && (
                 <Button asChild variant="outline">
-                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Github className="mr-2 h-4 w-4" />
                     Code source
                   </a>
@@ -87,7 +129,11 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
               {project.liveUrl && (
                 <Button asChild>
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ExternalLink className="mr-2 h-4 w-4" />
                     Site live
                   </a>
@@ -98,7 +144,9 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
           <div>
             <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
-            <p className="text-muted-foreground mb-6">{project.fullDescription}</p>
+            <p className="text-muted-foreground mb-6">
+              {project.fullDescription}
+            </p>
 
             <div className="space-y-8">
               <div>
