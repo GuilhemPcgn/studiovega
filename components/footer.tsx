@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <span className="text-xl font-bold gradient-text">DW</span>
+            <span className="text-xl font-bold gradient-text">SV</span>
             <p className="mt-4 text-muted-foreground">
               Développeur web fullstack passionné par la création d'expériences
               web uniques et performantes.
