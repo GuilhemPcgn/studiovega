@@ -2,6 +2,7 @@ export const runtime = 'nodejs';
 
 import { Resend } from 'resend';
 
+console.log("KEY FROM ENV:", process.env.RESEND_API_KEY);
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {

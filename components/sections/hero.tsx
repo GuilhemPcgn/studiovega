@@ -28,8 +28,6 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center">
-      <div className="flex justify-center w-[300px]">
-      </div>
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 w-full h-full z-0"
