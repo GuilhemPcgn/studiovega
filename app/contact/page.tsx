@@ -234,14 +234,14 @@ export default function ContactPage() {
                   <Mail className="h-5 w-5 text-secondary mr-3 mt-0.5" />
                   <div>
                     <p className="text-sm text-muted-foreground">Email</p>
-                    <p className="text-foreground">contact@example.com</p>
+                    <p className="text-foreground">contact@studiovega.dev</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Phone className="h-5 w-5 text-secondary mr-3 mt-0.5" />
                   <div>
                     <p className="text-sm text-muted-foreground">Téléphone</p>
-                    <p className="text-foreground">+33 6 12 34 56 78</p>
+                    <p className="text-foreground">+33 786 444 061</p>
                   </div>
                 </div>
               </div>
@@ -249,15 +249,15 @@ export default function ContactPage() {
             <div className="bg-card rounded-lg p-6 shadow-sm">
               <h2 className="text-xl font-semibold mb-4">Retrouvez-moi</h2>
               <div className="flex flex-col space-y-4">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-foreground/80 hover:text-secondary transition-colors">
+                <a href="https://github.com/GuilhemPcgn" target="_blank" rel="noopener noreferrer" className="flex items-center text-foreground/80 hover:text-secondary transition-colors">
                   <Github className="h-5 w-5 mr-3" />
                   <span>GitHub</span>
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-foreground/80 hover:text-secondary transition-colors">
+                <a href="https://www.linkedin.com/in/guilhempcgn/" target="_blank" rel="noopener noreferrer" className="flex items-center text-foreground/80 hover:text-secondary transition-colors">
                   <Linkedin className="h-5 w-5 mr-3" />
                   <span>LinkedIn</span>
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-foreground/80 hover:text-secondary transition-colors">
+                <a href="https://www.instagram.com/madcat_music/" target="_blank" rel="noopener noreferrer" className="flex items-center text-foreground/80 hover:text-secondary transition-colors">
                   <Instagram className="h-5 w-5 mr-3" />
                   <span>Instagram</span>
                 </a>
