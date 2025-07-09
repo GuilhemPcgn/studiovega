@@ -101,7 +101,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -224,7 +224,9 @@ export default function ContactPage() {
                 </Button>
               </form>
             </Form>
-          </div>
+          </div> */}
+
+          <div className="max-w-md mx-auto">
 
           <div>
             <div className="bg-card rounded-lg p-6 shadow-sm mb-6">
