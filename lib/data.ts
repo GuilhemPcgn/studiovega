@@ -11,6 +11,19 @@ import { ProjectType, ServiceType, TestimonialType } from "./types";
 
 export const featuredProjects: ProjectType[] = [
   {
+    id: "allyia-website",
+    title: "Allyia - Site officiel de l'application de santé mentale",
+    shortDescription: "Site vitrine de l'application Allyia, dédiée à la santé mentale assistée par IA.",
+    fullDescription: "Le site web d'Allyia est la plateforme centrale de présentation de notre application de santé mentale. Il a été conçu pour informer, rassurer et engager nos utilisateurs. On y retrouve une présentation détaillée des fonctionnalités de l'application, des articles du blog sur la santé mentale, des témoignages, un formulaire d'inscription à la newsletter, ainsi qu'un espace pour rejoindre notre serveur Discord. L'identité visuelle a été travaillée pour inspirer confiance, sérénité et innovation.",
+    context: "Ce site a été développé pour accompagner le lancement de notre start-up Allyia. Il sert à la fois de point d'entrée pour les utilisateurs, de support de communication, et de base pour nos actions marketing (SEO, réseaux sociaux, newsletters, etc.).",
+    challenge: "Le défi principal a été de structurer un site à la fois esthétique, accessible et performant, tout en assurant une cohérence forte avec la mission sensible d'Allyia : accompagner les personnes dans la gestion de leur santé mentale.",
+    solution: "J’ai conçu une architecture claire en utilisant Next.js avec l’App Router, optimisé le SEO dès le départ, et intégré des outils modernes pour les formulaires, l’authentification et la gestion des contenus. Le site est déjà en ligne et évolue au fil des retours utilisateurs.",
+    imageUrl: "/images/Allyia_Website.png",
+    githubUrl: "https://github.com/GuilhemPcgn/site-allyia",
+    techStack: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Shadcn/ui", "Brevo", "OpenGraph SEO"],
+    date: "2025-06"
+  },
+  {
     id: "greenroots",
     title: "Greenroots - Réduire son bilan Co2 en plantant des arbres",
     shortDescription: "Plateforme d'achat d'arbres pour réduire son empreinte carbone, paiement sécurisé et suivis de la vie de l'arbre",
