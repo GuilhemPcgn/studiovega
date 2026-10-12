@@ -230,7 +230,7 @@ export const services: ServiceType[] = [
       "Formation à la gestion de la boutique"
     ],
     icon: ShoppingCart,
-    startingPrice: 800
+    startingPrice: 1200
   },
   {
     id: "refonte-responsive",
