@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import { ArrowLeft, Github, ExternalLink } from "lucide-react";
+import ProjectGallery from "@/components/project-gallery";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { featuredProjects } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -78,75 +78,48 @@ export default async function ProjectDetailPage({
           </Link>
         </Button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="relative">
-            <div className="aspect-video relative rounded-lg overflow-hidden">
-              <Image
-                src={project.imageUrl}
-                alt={project.title}
-                fill
-                className="object-contain"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            </div>
+        {/* Le h1 ouvre la page, l'image l'illustre. La stack est déplacée en
+            encart à droite du texte (voir plus bas). */}
+        <h1 className="text-3xl md:text-4xl font-bold mb-8">{project.title}</h1>
 
-            {project.videoUrl && (
-              <Dialog>
-                <DialogContent className="max-w-4xl p-0 overflow-hidden">
-                  <div className="aspect-video w-full">
-                    <iframe
-                      src={project.videoUrl}
-                      title={`Démo de ${project.title}`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full"
-                    />
-                  </div>
-                </DialogContent>
-              </Dialog>
-            )}
+        {/* Galerie pleine largeur. `object-contain` + `bg-card` : les captures
+            iPhone (9:16) restent entières et centrées au lieu d'être recadrées. */}
+        <div className="mb-8">
+          <ProjectGallery
+            images={project.gallery ?? [project.imageUrl]}
+            video={
+              project.videoUrl
+                ? { src: project.videoUrl, poster: project.videoPoster }
+                : undefined
+            }
+            title={project.title}
+          />
+        </div>
 
-            <div className="mt-8 flex flex-wrap gap-2">
-              {project.techStack.map((tech) => (
-                <Badge key={tech} variant="secondary">
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              {project.githubUrl && (
-                <Button asChild variant="outline">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="mr-2 h-4 w-4" />
-                    Code source
-                  </a>
-                </Button>
-              )}
-
-              {project.liveUrl && (
-                <Button asChild>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Site live
-                  </a>
-                </Button>
-              )}
-            </div>
+        {/* Rangée conditionnelle : sans lien, un conteneur vide laisserait
+            une marge de 48px entre la galerie et le texte. */}
+        {project.liveUrl && (
+          <div className="flex flex-wrap gap-4 mb-12">
+            <Button asChild>
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="mr-2 h-4 w-4" />
+                Site live
+              </a>
+            </Button>
           </div>
+        )}
 
-          <div>
-            <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
-            <p className="text-muted-foreground mb-6">
+        {/* Deux colonnes : le texte garde une mesure lisible et la stack occupe
+            la place restée vide à droite, au lieu d'être une ligne sous le titre.
+            Sur mobile l'encart repasse au-dessus du texte (order-first) pour
+            conserver la visibilité qu'avaient les badges. */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+          <div className="lg:col-span-2 max-w-3xl">
+            <p className="text-muted-foreground mb-8">
               {project.fullDescription}
             </p>
 
@@ -167,6 +140,21 @@ export default async function ProjectDetailPage({
               </div>
             </div>
           </div>
+
+          <aside className="order-first lg:order-none">
+            <Card className="lg:sticky lg:top-24">
+              <CardContent className="p-6">
+                <h2 className="text-lg font-semibold mb-4">Stack technique</h2>
+                <div className="flex flex-wrap gap-2">
+                  {project.techStack.map((tech) => (
+                    <Badge key={tech} className="bg-amber-soft text-amber-deep border-transparent hover:bg-amber-soft">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </aside>
         </div>
       </div>
     </div>

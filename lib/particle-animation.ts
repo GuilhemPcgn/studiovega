@@ -1,6 +1,34 @@
+import { brand } from "./brand-colors";
+
 export const particleAnimation = (canvas: HTMLCanvasElement) => {
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  // Les couleurs viennent des tokens CSS : aucune valeur codée en dur ici.
+  const token = (name: string, fallback: string) =>
+    getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+
+  const hexToRgb = (hex: string) => {
+    const h = hex.replace("#", "");
+    return [
+      parseInt(h.slice(0, 2), 16),
+      parseInt(h.slice(2, 4), 16),
+      parseInt(h.slice(4, 6), 16),
+    ];
+  };
+
+  const rgba = (hex: string, alpha: number) => {
+    const [r, g, b] = hexToRgb(hex);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  };
+
+  const accentOnDark = token("--accent-on-dark", brand.accentOnDark);
+  const accentSoft = token("--accent-soft", brand.accentSoft);
+  const dimOnDark = token("--text-secondary-on-dark", brand.textSecondaryOnDark);
 
   // Set canvas size
   const resizeCanvas = () => {
@@ -26,10 +54,10 @@ export const particleAnimation = (canvas: HTMLCanvasElement) => {
   const particleCount = Math.min(100, Math.floor(canvas.width * canvas.height / 10000));
   
   const colors = [
-    "rgba(139, 92, 246, 0.5)", // Purple
-    "rgba(167, 139, 250, 0.5)", // Violet
-    "rgba(186, 230, 253, 0.3)", // Light blue
-    "rgba(255, 255, 255, 0.3)",  // White
+    rgba(accentOnDark, 0.55),
+    rgba(accentSoft, 0.45),
+    rgba(dimOnDark, 0.3),
+    "rgba(255, 255, 255, 0.28)",
   ];
 
   for (let i = 0; i < particleCount; i++) {
@@ -109,7 +137,7 @@ export const particleAnimation = (canvas: HTMLCanvasElement) => {
 
       if (distance < 150) {
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(139, 92, 246, ${0.2 * (1 - distance / 150)})`;
+        ctx.strokeStyle = rgba(accentOnDark, 0.22 * (1 - distance / 150));
         ctx.lineWidth = 0.5;
         ctx.moveTo(particle.x, particle.y);
         ctx.lineTo(otherParticle.x, otherParticle.y);

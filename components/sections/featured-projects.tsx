@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ProjectCard from "@/components/project-card";
-import { featuredProjects } from "@/lib/data";
+import { homeProjects } from "@/lib/data";
 
 export default function FeaturedProjects() {
   return (
@@ -18,15 +18,15 @@ export default function FeaturedProjects() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="section-title">Projets Récents</h2>
+            <h2 className="section-title">Projets Phares</h2>
             <p className="section-subtitle max-w-2xl mx-auto">
-              Découvrez mes dernières réalisations et les solutions que j'ai développées.
+              Trois projets récents, assez différents pour donner une idée de ce que je fais.
             </p>
           </motion.div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredProjects.slice(0, 3).map((project, index) => (
+          {homeProjects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}

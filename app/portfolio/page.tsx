@@ -1,11 +1,11 @@
 import { Metadata } from "next";
-import Link from "next/link";
-import { featuredProjects } from "@/lib/data";
+import { highlightedProjects, otherProjects } from "@/lib/data";
 import ProjectCard from "@/components/project-card";
+import ProjectCardCompact from "@/components/project-card-compact";
 
 export const metadata: Metadata = {
-  title: "Portfolio | Développeur Web Fullstack",
-  description: "Découvrez mes projets de développement web et les solutions que j'ai créées",
+  title: "Portfolio",
+  description: "Projets web fullstack récents : contexte, contraintes techniques et solutions retenues.",
 };
 
 export default function PortfolioPage() {
@@ -15,16 +15,36 @@ export default function PortfolioPage() {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h1 className="section-title">Mes Projets</h1>
           <p className="section-subtitle max-w-2xl mx-auto">
-            Une sélection de mes réalisations récentes en développement web fullstack.
-            Chaque projet représente un défi unique que j'ai relevé avec passion.
+            Quelques projets récents. Pour chacun, le contexte, la contrainte principale
+            et la façon dont je l'ai traitée.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
+        <section className="mb-20">
+          <h2 className="text-2xl font-bold mb-2">Projets phares</h2>
+          <p className="text-muted-foreground mb-8">
+            Les réalisations les plus représentatives de ce que je sais faire aujourd'hui.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {highlightedProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+        </section>
+
+        {otherProjects.length > 0 && (
+          <section>
+            <h2 className="text-2xl font-bold mb-2">Autres réalisations</h2>
+            <p className="text-muted-foreground mb-8">
+              Projets plus anciens ou de plus petite envergure, toujours consultables en détail.
+            </p>
+            <div className="flex flex-col gap-4">
+              {otherProjects.map((project) => (
+                <ProjectCardCompact key={project.id} project={project} />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

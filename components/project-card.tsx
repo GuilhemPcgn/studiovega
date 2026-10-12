@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { ProjectType } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,7 +18,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <Card 
-      className="overflow-hidden card-hover h-full flex flex-col"
+      className="relative overflow-hidden card-hover h-full flex flex-col bg-page border-subtle"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -32,17 +32,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             transform: isHovered ? "scale(1.05)" : "scale(1)",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-amber-deep/55 to-transparent" />
         
         {/* Tech stack badges */}
         <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
           {project.techStack.slice(0, 3).map((tech) => (
-            <Badge key={tech} variant="secondary" className="text-xs">
+            <Badge key={tech} className="text-xs bg-amber-soft text-amber-deep border-transparent hover:bg-amber-soft">
               {tech}
             </Badge>
           ))}
           {project.techStack.length > 3 && (
-            <Badge variant="outline" className="text-xs">+{project.techStack.length - 3}</Badge>
+            <Badge variant="outline" className="text-xs border-subtle text-dim">+{project.techStack.length - 3}</Badge>
           )}
         </div>
       </div>
@@ -53,26 +53,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {project.shortDescription}
         </p>
         
-        <div className="flex justify-between items-center mt-auto">
+        <div className="flex items-center mt-auto">
+          {/* Lien étendu : le pseudo-élément couvre toute la carte, ce qui la rend
+              cliquable sans imbriquer de <a> ni dupliquer les cibles au clavier. */}
           <Link 
             href={`/portfolio/${project.id}`}
-            className="text-sm font-medium flex items-center text-secondary hover:text-secondary/80 transition-colors"
+            className="text-sm font-medium flex items-center text-amber-hover hover:text-amber-deep transition-colors after:absolute after:inset-0 after:content-['']"
           >
             Voir détails
             <ExternalLink className="ml-1 h-3 w-3" />
           </Link>
-          
-          {project.githubUrl && (
-            <Link
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground/70 hover:text-secondary transition-colors"
-            >
-              <Github className="h-5 w-5" />
-              <span className="sr-only">GitHub</span>
-            </Link>
-          )}
         </div>
       </CardContent>
     </Card>

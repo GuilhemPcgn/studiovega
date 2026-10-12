@@ -7,9 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export default function CTAContact() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 gradient-bg opacity-90" />
-      
+    <section className="py-24 relative overflow-hidden bg-elevated">
       <div className="container relative z-10 mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -18,11 +16,11 @@ export default function CTAContact() {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Prêt à donner vie à votre projet web ?
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-ink">
+            Un projet en tête ?
           </h2>
-          <p className="text-lg md:text-xl text-white/80 mb-8">
-            Parlons ensemble de votre projet et trouvons la solution qui correspond à vos besoins et objectifs.
+          <p className="text-lg md:text-xl text-dim mb-8">
+            Expliquez-moi ce que vous avez en tête. Je vous dis si je peux le faire, comment, et à quel prix.
           </p>
           <Button asChild size="lg" className="btn-primary">
             <Link href="/contact">

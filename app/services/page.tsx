@@ -1,11 +1,11 @@
 import { Metadata } from "next";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, CalendarClock } from "lucide-react";
 import { services } from "@/lib/data";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Services | Développeur Web Fullstack",
-  description: "Découvrez mes services de développement web, de la création de sites vitrines aux applications sur mesure",
+  title: "Services",
+  description: "Prestations de développement web : sites vitrines, refonte, intégration d'API, frontend, backend et projets fullstack.",
 };
 
 export default function ServicesPage() {
@@ -15,7 +15,7 @@ export default function ServicesPage() {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h1 className="section-title">Mes Services</h1>
           <p className="section-subtitle max-w-2xl mx-auto">
-            Des solutions web adaptées à vos besoins, pour tous types de projets et budgets.
+            Les prestations que je propose, avec ce qu'elles couvrent et à partir de quel prix.
           </p>
         </div>
 
@@ -46,11 +46,42 @@ export default function ServicesPage() {
                   <p className="text-xl font-medium gradient-text">
                     À partir de {service.startingPrice}€
                   </p>
+                  <p className="mt-2 text-sm text-foreground/80">
+                    Périmètre au-delà de ce qui est décrit ci-dessus : facturé au TJM
+                    de 400€/jour.
+                  </p>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
+
+        {/* Encart TJM : volontairement hors de la grille des forfaits — cible les
+            missions longues et le renfort ponctuel, pas les projets fermés. */}
+        <Card className="mb-20 border-secondary/40">
+          <CardContent className="p-8">
+            <div className="flex flex-col sm:flex-row gap-6">
+              <div className="w-14 h-14 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                <CalendarClock className="h-7 w-7 text-secondary" />
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-bold mb-2">Mission au TJM</h2>
+                <p className="text-2xl font-medium gradient-text mb-4">400€/jour</p>
+                <p className="text-foreground/80 mb-3">
+                  Disponible pour du renfort technique ponctuel, des missions longues,
+                  ou des collaborations récurrentes.
+                </p>
+                <p className="text-foreground/80 mb-4">
+                  Devis sur mesure après échange sur le périmètre et la durée estimée.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Également disponible pour une collaboration en temps partiel régulier.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <div className="bg-card rounded-lg p-8 shadow-sm">
           <h2 className="text-2xl font-bold mb-6 text-center">Comment je travaille</h2>

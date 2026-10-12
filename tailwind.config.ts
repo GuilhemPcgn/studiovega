@@ -43,14 +43,32 @@ const config: Config = {
           foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
+          DEFAULT: 'hsl(var(--accent-bg))',
           foreground: 'hsl(var(--accent-foreground))',
+        },
+        // Utilitaires sémantiques : permettent d'écrire bg-page, text-dim,
+        // border-subtle… sans jamais remettre d'hexadécimal dans un composant.
+        page: 'var(--bg-page)',
+        'dark-section': 'var(--bg-dark-section)',
+        elevated: 'var(--bg-elevated)',
+        ink: 'var(--text-primary)',
+        dim: 'var(--text-secondary)',
+        'on-dark': 'var(--text-on-dark)',
+        'dim-on-dark': 'var(--text-secondary-on-dark)',
+        amber: {
+          DEFAULT: 'var(--accent)',
+          hover: 'var(--accent-hover)',
+          light: 'var(--accent-on-dark)',
+          soft: 'var(--accent-soft)',
+          deep: 'var(--on-accent-light)',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
         border: 'hsl(var(--border))',
+        subtle: 'var(--border-subtle)',
+        'subtle-on-dark': 'var(--border-on-dark)',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         chart: {

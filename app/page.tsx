@@ -11,8 +11,8 @@ export default function Home() {
       <Hero />
       <FeaturedProjects />
       <Services />
-      <About />
       <Testimonials />
+      <About />
       <CTAContact />
     </div>
   );

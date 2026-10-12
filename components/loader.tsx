@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -8,6 +10,15 @@ export default function Loader() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      setLoading(false);
+      return;
+    }
+
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1500);
@@ -39,7 +50,14 @@ export default function Loader() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <span className="gradient-text text-xl font-bold">SV</span>
+              <Image
+                src="/images/logo-sv.webp"
+                alt=""
+                width={871}
+                height={301}
+                priority
+                className="w-10 h-auto"
+              />
             </motion.div>
           </div>
         </motion.div>

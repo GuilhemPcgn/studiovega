@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "./theme-toggle";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -21,6 +20,10 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  // En haut de la page d'accueil, l'en-tête transparent se superpose au hero
+  // anthracite : le texte doit alors passer en clair pour rester lisible.
+  const overDarkHero = pathname === "/" && !isScrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,18 +44,24 @@ export default function Header() {
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/images/logo.png"
-            alt="Logo"
-            width={77}
-            height={77}
+            src="/images/logo-sv.webp"
+            alt="Studio Vega"
+            width={871}
+            height={301}
+            priority
+            className="h-9 w-auto md:h-10"
           />
+          <span
+            className={cn(
+              "hidden text-lg font-bold sm:inline",
+              overDarkHero ? "text-amber-light" : "text-amber-hover"
+            )}
+          >
+            Studio Vega
+          </span>
         </Link>
-
-
-
-
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
           {navItems.map((item) => (
@@ -60,24 +69,27 @@ export default function Header() {
               key={item.path}
               href={item.path}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-secondary",
+                "text-sm font-medium transition-colors",
+                overDarkHero ? "hover:text-amber-light" : "hover:text-amber-hover",
                 pathname === item.path
-                  ? "text-secondary"
-                  : "text-foreground/70"
+                  ? overDarkHero
+                    ? "text-amber-light"
+                    : "text-amber-hover"
+                  : overDarkHero
+                    ? "text-dim-on-dark"
+                    : "text-dim"
               )}
             >
               {item.name}
             </Link>
           ))}
-          <ThemeToggle />
         </nav>
 
         {/* Mobile Menu Button */}
         <div className="flex items-center md:hidden">
-          <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="ml-2 p-2"
+            className={cn("ml-2 p-2", overDarkHero ? "text-on-dark" : "text-ink")}
             aria-label="Menu"
           >
             {mobileMenuOpen ? (

@@ -20,7 +20,7 @@ export default function ServicesPreview() {
           >
             <h2 className="section-title">Mes Services</h2>
             <p className="section-subtitle max-w-2xl mx-auto">
-              Des solutions adaptées à vos besoins, pour tous vos projets web.
+              Ce que je peux prendre en charge, du site vitrine à l'application complète.
             </p>
           </motion.div>
         </div>

@@ -20,12 +20,12 @@ export default function AboutPreview() {
           >
             <div className="aspect-square relative rounded-lg overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1579403124614-197f69d8187b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGQlQzMlQTl2ZWxvcHBldXIlMjB3ZWJ8ZW58MHx8MHx8fDA%3D"
+                src="/images/projects/about-developer.jpg"
                 alt="Développeur Web"
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/60 to-transparent mix-blend-multiply" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-amber-deep/50 to-transparent mix-blend-multiply" />
             </div>
             <div className="absolute -bottom-5 -right-5 w-32 h-32 bg-secondary/20 rounded-full blur-3xl" />
             <div className="absolute -top-5 -left-5 w-32 h-32 bg-secondary/20 rounded-full blur-3xl" />

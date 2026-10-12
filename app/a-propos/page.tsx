@@ -5,8 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { skillCategories, setupItems } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "À Propos | Développeur Web Fullstack",
-  description: "En savoir plus sur mon parcours, mes compétences et ma passion pour le développement web",
+  title: "À Propos",
+  description: "Mon parcours, de la musique au développement web, et les technologies avec lesquelles je travaille.",
 };
 
 export default function AboutPage() {
@@ -16,7 +16,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h1 className="section-title">À Propos de Moi</h1>
           <p className="section-subtitle max-w-2xl mx-auto">
-            Passionné de développement web, je crée des expériences numériques uniques et performantes.
+            Développeur web fullstack en freelance, installé entre le web et le mobile.
           </p>
         </div>
 
@@ -24,12 +24,12 @@ export default function AboutPage() {
           <div className="relative">
             <div className="aspect-square relative rounded-lg overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1579403124614-197f69d8187b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGQlQzMlQTl2ZWxvcHBldXIlMjB3ZWJ8ZW58MHx8MHx8fDA%3D"
+                src="/images/projects/about-developer.jpg"
                 alt="Développeur Web"
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/60 to-transparent mix-blend-multiply" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-amber-deep/50 to-transparent mix-blend-multiply" />
             </div>
             <div className="absolute -bottom-5 -right-5 w-32 h-32 bg-secondary/20 rounded-full blur-3xl" />
             <div className="absolute -top-5 -left-5 w-32 h-32 bg-secondary/20 rounded-full blur-3xl" />
@@ -38,13 +38,13 @@ export default function AboutPage() {
           <div>
             <h2 className="text-2xl font-bold mb-4">Mon Parcours</h2>
             <p className="text-foreground/80 mb-4">
-              Après plusieurs années d'une carrière musicale, je me lance dans la programmation. Après quelques mois en autodidacte à tâtoner sur plusieurs languages, je me lance dans une formation intensive chez O'Clock de développeur web, spécialisé en accessibilité.
+              Avant de coder, j'ai passé plusieurs années dans la musique. Et puis un jour j'ai eu envie de comprendre comment tournait un site web, et je ne m'en suis plus arrêté : quelques mois à bidouiller tout seul, puis une formation intensive chez O'Clock, spécialisée en accessibilité, pour structurer tout ça sérieusement.
             </p>
             <p className="text-foreground/80 mb-4">
-              Ma passion pour le code m'a amené à me spécialiser dans les technologies JavaScript modernes, avec une prédilection pour React et Node.js. Je m'intéresse particulièrement aux interfaces utilisateur innovantes et aux applications web performantes.
+              Depuis, je code aussi bien pour le web que pour mobile en iOS. J'ai un faible pour l'écosystème JavaScript, React et Node.js en tête, mais ce que je préfère, c'est construire des interfaces qui tournent bien, qui chargent vite et qui restent accessibles. Pas seulement jolies sur une maquette Figma.
             </p>
             <p className="text-foreground/80">
-              Je suis constamment en train d'apprendre et d'expérimenter de nouvelles technologies pour proposer les meilleures solutions à mes clients. Mon objectif est de créer des applications web qui allient esthétique, performance et facilité d'utilisation.
+              Je n'ai jamais vraiment arrêté d'apprendre depuis mes débuts. Nouveau framework, nouvelle techno, bug bizarre à débugger un dimanche soir : j'y vais, je teste, parfois ça casse, mais c'est comme ça qu'on progresse.
             </p>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function AboutPage() {
                   <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill) => (
-                      <Badge key={skill} variant="secondary">
+                      <Badge key={skill} className="bg-amber-soft text-amber-deep border-transparent hover:bg-amber-soft">
                         {skill}
                       </Badge>
                     ))}
@@ -73,13 +73,13 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold mb-8 text-center">Pourquoi je suis développeur</h2>
           <div className="bg-card rounded-lg p-8 shadow-sm">
             <p className="text-foreground/80 mb-4">
-              Le développement web est pour moi bien plus qu'un métier — c'est une passion qui me permet de combiner créativité et résolution de problèmes. Ce que j'aime particulièrement, c'est le sentiment de satisfaction quand une solution élégante émerge d'un défi technique complexe.
+              Coder ressemble un peu à la musique : il faut de la structure et de la rigueur, mais il reste de la place pour choisir comment faire les choses. Rien ne vaut le moment où, après s'être pris la tête pendant des heures sur un bug ou une architecture trop compliquée, tout finit par cliquer.
             </p>
             <p className="text-foreground/80 mb-4">
-              Chaque projet est une opportunité d'apprendre et de progresser. J'apprécie la diversité des problématiques rencontrées et la possibilité de créer des solutions qui ont un impact réel sur les utilisateurs et les entreprises.
+              Ce que j'aime dans ce métier, c'est qu'aucun projet ne ressemble au précédent. Chaque client, chaque idée amène ses propres contraintes, et c'est justement ça qui rend le travail intéressant. Voir un site que j'ai construit être réellement utilisé par des gens, ça reste la meilleure partie du boulot.
             </p>
             <p className="text-foreground/80">
-              La technologie évolue constamment, et cette évolution permanente est ce qui rend ce métier si passionnant. Je reste curieux et enthousiaste face aux nouveaux outils et frameworks qui nous permettent de repousser les limites de ce qui est possible sur le web.
+              Le web change vite, il y a toujours un nouvel outil à tester ou une meilleure façon de faire les choses. Je préfère largement ça à la routine, et c'est sans doute pour ça que je ne m'en lasse pas.
             </p>
           </div>
         </div>

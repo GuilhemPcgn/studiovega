@@ -3,14 +3,14 @@ import { Github, Linkedin, Instagram, Mail, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-card/50 backdrop-blur-sm border-t border-border">
+    <footer className="on-dark border-t border-subtle-on-dark">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <span className="text-xl font-bold gradient-text">SV</span>
-            <p className="mt-4 text-muted-foreground">
-              Développeur web fullstack passionné par la création d'expériences
-              web uniques et performantes.
+            <span className="text-xl font-bold gradient-text">Studio Vega</span>
+            <p className="mt-4 text-dim-on-dark">
+              Développeur web fullstack en freelance. Je conçois des sites
+              vitrines et des applications web.
             </p>
           </div>
 

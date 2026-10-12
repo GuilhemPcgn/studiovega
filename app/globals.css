@@ -2,73 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   Tokens de couleur — source unique de vérité.
+   Identité crème/ambre (audio analogique). Aucune valeur
+   hexadécimale ne doit être écrite ailleurs que dans ce bloc.
+   ============================================================ */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+  /* -- Surfaces -- */
+  --bg-page: #FAEEDA;           /* fond de toutes les pages et sections */
+  --bg-dark-section: #211C18;   /* réservé au hero et au footer */
+  --bg-elevated: #F4E4CB;       /* cartes et blocs posés sur le crème */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  /* -- Texte sur fond clair -- */
+  --text-primary: #2C2C2A;
+  --text-secondary: #5F5E5A;
+
+  /* -- Texte sur fond sombre -- */
+  --text-on-dark: #FFFFFF;
+  --text-secondary-on-dark: #B4B2A9;
+
+  /* -- Accent -- */
+  --accent: #BA7517;            /* bordures, icônes, aplats, grands titres */
+  --accent-hover: #854F0B;      /* survol, et texte ambre de taille normale
+                                   (#BA7517 ne passe qu'à 3,24:1 sur crème) */
+  --accent-on-dark: #EF9F27;    /* accent lisible sur l'anthracite */
+  --on-accent: #FAEEDA;         /* libellé sur aplat ambre — 5,87:1 sur --accent-hover */
+  --on-accent-light: #412402;   /* libellé sur ambre clair (badges) */
+  --accent-soft: #FAC775;       /* fond des badges de stack */
+
+  /* -- Contours -- */
+  --border-subtle: rgba(44, 44, 42, 0.14);
+  --border-strong: rgba(44, 44, 42, 0.28);
+  --border-on-dark: rgba(255, 255, 255, 0.14);
 }
 
 @layer base {
+  /* Mapping des tokens shadcn/ui sur la palette ci-dessus (format HSL sans wrapper). */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 265 89% 78%;
-    --secondary-foreground: 265 89% 98%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 265 89% 78%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --background: 38 76% 92%;
+    --foreground: 60 2% 17%;
+    --card: 37 63% 88%;
+    --card-foreground: 60 2% 17%;
+    --popover: 38 76% 92%;
+    --popover-foreground: 60 2% 17%;
+    --primary: 33 85% 28%;
+    --primary-foreground: 38 76% 92%;
+    --secondary: 35 78% 41%;
+    --secondary-foreground: 38 76% 92%;
+    --muted: 37 55% 86%;
+    --muted-foreground: 48 3% 36%;
+    --accent-bg: 37 93% 72%;
+    --accent-foreground: 32 94% 13%;
+    --destructive: 0 65% 42%;
+    --destructive-foreground: 38 76% 92%;
+    --border: 40 12% 78%;
+    --input: 40 12% 78%;
+    --ring: 35 78% 41%;
     --radius: 0.5rem;
-  }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 265 89% 78%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 265 89% 78%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
   }
 }
 
@@ -77,55 +67,140 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
-    background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--card)));
+    @apply bg-background text-foreground;
+    background: var(--bg-page);
   }
-  
-  /* Scrollbar styles */
+
+  /* Scrollbar accordée à la palette ambre */
   ::-webkit-scrollbar {
     width: 6px;
   }
-  
   ::-webkit-scrollbar-track {
-    background: hsl(var(--card));
+    background: var(--bg-elevated);
   }
-  
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--secondary) / 0.7);
+    background: var(--accent);
     border-radius: 3px;
   }
-  
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--secondary));
+    background: var(--accent-hover);
+  }
+
+  /* Anneau de focus ambre, plus de résidu violet */
+  :focus-visible {
+    outline: 2px solid var(--accent-hover);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--on-accent-light);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
 @layer components {
+  /* Anciennement un dégradé violet→bleu : devient un ambre plein.
+     Le nom est conservé pour ne pas toucher au balisage des pages. */
   .gradient-text {
-    @apply bg-gradient-to-r from-purple-600 via-purple-500 to-blue-400 bg-clip-text text-transparent;
+    color: var(--accent-hover);
   }
-  
+
+  /* Bloc sombre : hero et footer uniquement. */
   .gradient-bg {
-    @apply bg-gradient-to-br from-violet-800 via-purple-900 to-black;
+    background: var(--bg-dark-section);
   }
-  
+
+  /* Sur fond sombre, l'accent et les titres changent de valeur. */
+  .on-dark {
+    background: var(--bg-dark-section);
+    color: var(--text-on-dark);
+  }
+  .on-dark .gradient-text {
+    color: var(--accent-on-dark);
+  }
+
+  /* Les utilitaires de texte du thème clair se retrouvent illisibles dans une
+     section sombre : on les remappe ici plutôt que de réécrire le balisage. */
+  .on-dark .text-muted-foreground,
+  .on-dark .text-foreground\/80,
+  .on-dark .text-foreground\/70 {
+    color: var(--text-secondary-on-dark);
+  }
+  .on-dark .text-foreground {
+    color: var(--text-on-dark);
+  }
+  .on-dark a:hover .lucide,
+  .on-dark .hover\:text-secondary:hover {
+    color: var(--accent-on-dark);
+  }
+
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-2;
+    @apply transition-all duration-300 hover:-translate-y-2;
+    box-shadow: 0 1px 2px rgba(44, 44, 42, 0.04);
+  }
+  .card-hover:hover {
+    box-shadow: 0 10px 24px rgba(65, 36, 2, 0.16);
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-6 md:mb-10 gradient-text;
+    @apply text-3xl md:text-4xl font-bold mb-6 md:mb-10;
+    color: var(--accent-hover);
   }
-  
+
   .section-subtitle {
-    @apply text-xl md:text-2xl font-medium mb-4 text-foreground/80;
+    @apply text-xl md:text-2xl font-medium mb-4;
+    color: var(--text-secondary);
   }
-  
+
   .btn-primary {
-    @apply bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white font-medium py-2 px-6 rounded-md shadow-md transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20;
+    @apply font-medium py-2 px-6 rounded-md transition-all duration-300;
+    background: var(--accent-hover);
+    color: var(--on-accent);
+    box-shadow: 0 1px 2px rgba(65, 36, 2, 0.18);
   }
-  
+  .btn-primary:hover {
+    background: var(--on-accent-light);
+    box-shadow: 0 6px 16px rgba(65, 36, 2, 0.24);
+  }
+
   .btn-secondary {
-    @apply bg-transparent border border-violet-600 text-foreground font-medium py-2 px-6 rounded-md shadow-md transition-all duration-300 hover:bg-violet-600/10 hover:shadow-lg hover:shadow-purple-500/20;
+    @apply font-medium py-2 px-6 rounded-md transition-all duration-300;
+    /* Écrase le bg-background de la variante outline de shadcn, qui gagnerait
+       sinon par ordre de couches (utilities après components). */
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent-hover);
+  }
+  .btn-secondary:hover {
+    background: rgba(186, 117, 23, 0.1);
+    color: var(--on-accent-light);
+  }
+
+  /* Variantes des boutons à l'intérieur d'une section sombre. */
+  .on-dark .btn-primary {
+    background: var(--accent-on-dark);
+    color: var(--bg-dark-section);
+  }
+  .on-dark .btn-primary:hover {
+    background: var(--accent-soft);
+  }
+  .on-dark .btn-secondary {
+    background: transparent;
+    border-color: var(--accent-on-dark);
+    color: var(--accent-on-dark);
+  }
+  .on-dark .btn-secondary:hover {
+    background: rgba(239, 159, 39, 0.14);
+    color: var(--accent-soft);
   }
 }

@@ -12,9 +12,60 @@ import Analytics from '@/components/analytics'; // ← GA4 (à créer)
 
 const inter = Inter({ subsets: ['latin'] });
 
+const siteUrl = 'https://studiovega.dev';
+const siteName = 'Studio Vega';
+const siteDescription =
+  "Studio Vega, l'activité freelance de Guilhem Poincignon : sites vitrines, applications web et projets fullstack en Next.js, React et Node.js.";
+
 export const metadata: Metadata = {
-  title: 'Portfolio Développeur Web Fullstack',
-  description: 'Portfolio professionnel présentant mes projets et services de développement web fullstack',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${siteName} — Développeur Web Fullstack`,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  keywords: [
+    'développeur web fullstack',
+    'développeur web freelance',
+    'Next.js',
+    'React',
+    'TypeScript',
+    'création de site vitrine',
+    'application web sur mesure',
+  ],
+  authors: [{ name: 'Guilhem Poincignon' }],
+  creator: 'Guilhem Poincignon',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'fr_FR',
+    url: siteUrl,
+    siteName,
+    title: `${siteName} — Développeur Web Fullstack`,
+    description: siteDescription,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${siteName} — Développeur Web Fullstack`,
+    description: siteDescription,
+  },
+};
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Guilhem Poincignon',
+  alternateName: 'Studio Vega',
+  url: siteUrl,
+  jobTitle: 'Développeur Web Fullstack',
+  email: 'contact@studiovega.dev',
+  sameAs: [
+    'https://github.com/GuilhemPcgn',
+    'https://www.linkedin.com/in/guilhempcgn/',
+    'https://www.instagram.com/madcat_music/',
+  ],
 };
 
 export default function RootLayout({
@@ -25,6 +76,10 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         {/* Google Analytics script loader */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-4R4Y4W8KJW"
@@ -42,7 +97,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light">
           <Loader />
           <SmoothScroll>
             <div className="flex min-h-screen flex-col">
@@ -52,7 +107,7 @@ export default function RootLayout({
             </div>
           </SmoothScroll>
           <Toaster />
-          <Analytics /> {/* ← GA4 suivi des changements de page */}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
